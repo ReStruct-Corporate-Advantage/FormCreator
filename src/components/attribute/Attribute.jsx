@@ -5,7 +5,7 @@ import DateInput from "../baseControls/DateInput";
 import SingleSelectDropdown from "../baseControls/SingleSelectDropdown";
 import SelectRadioGroup from "../baseControls/SelectRadioGroup";
 import MultiSelectDropdown from "../baseControls/MultiSelectDropdown";
-// import {v4 as uuidv4} from "uuid";
+import {Validate} from './../../validations/validationUtility'
 
 const Components = {
   "_TextInput": TextInput,
@@ -33,7 +33,7 @@ function Attribute({attributeInfo, formErrors, formValues, index, updateFormErro
             [id]: ''
         }
     })
-  }, [id])
+  }, [])
 
   const createAttribute = (attributeInfo) => {
     const type = attributeInfo.attributeType
@@ -55,37 +55,16 @@ function Attribute({attributeInfo, formErrors, formValues, index, updateFormErro
     return <CurrentComponent {...opts} />
   }
 
-  const validateAttribute = (e, validationObj) => {
-    const inputValue = e.target.value && e.target.value
+  const validateAttribute = (e, validation) => {
+    const target = e.target
     let error = false
     let errorMessage = ''
-    const validRegex =
-        validationObj.dataRuleRegex &&
-        new RegExp(validationObj.dataRuleRegex.regex).test(inputValue)
 
-    if (e.target.tagName && e.target.tagName === 'SELECT') {
-        if (
-            validationObj.required.isRequired &&
-            e.target.selectedIndex === 0 &&
-            !validationObj.required.preSelected
-        ) {
-            error = true
-            errorMessage = validationObj.required.error_message
-        }
-    } else if (e.target.tagName && e.target.tagName === 'INPUT') {
-        if (validationObj.required.isRequired) {
-            if (inputValue.trim('') === '') {
-                error = true
-                errorMessage = validationObj.required.error_message
-            } else if (validationObj.dataRuleRegex && !validRegex) {
-                error = true
-                errorMessage = validationObj.dataRuleRegex.error_message
-            }
-        }
-    } else {
-        error = false
-        errorMessage = ""
-    }
+    validation && validation.validators && validation.validators.every((validator) => {
+      errorMessage = Validate[validator](target, validation);
+      error = !!errorMessage;
+      return !error
+    })
 
     setError(error)
     setErrorMessage(errorMessage)
@@ -100,7 +79,7 @@ function Attribute({attributeInfo, formErrors, formValues, index, updateFormErro
     updateFormValues({
         formValues: {
             ...formValues,
-            [componentKey]: inputValue
+            [componentKey]: target.value
         }
     })
 

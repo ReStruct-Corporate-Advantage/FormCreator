@@ -3,39 +3,37 @@
     "ClassificationName": "Provider Info:",
     "ClassificationDesc": "Contains submitter information",
     "attributes": {
-      "provider_submitter": {
+      "provider_submitter_sid": {
         "attributeType": "_TextInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
         "placeholder": "Submitter SID",
         "starVal": "*",
         "label": "Submitter SID",
-        "id": "provider_submitter",
-        "name": "submitter",
+        "id": "provider_submitter_sid",
+        "name": "provider_submitter_sid",
         "value": "",
         "type": "input",
-        "subtype": "text",
+        "subtype": "number",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "minlength": 5,
+          "maxlength": 15,
+          "regex": "^[0-9]+$",
+          "errorMessages": {
+            "required": "This field is required",
+            "regex": "SID should be numeric",
+            "length": "Length of the field should be between 5 and 15 characters."
           },
-          "rules": {
-            "minlength": 5,
-            "maxlength": 15
-          },
-          "dataRuleRegex" :{
-            "regex": "^[0-9]+$",
-            "error_message": "SID should be numeric."
-          }
+          "validators": ["validateRequired", "validateRegex", "validateLength"]
         }
       },
-      "provider_submitterlob": {
+      "provider_submitter_lob": {
         "attributeType": "_SingleSelectDropdown",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Submitter LOB",
-        "id": "provider_submitterlob",
+        "name": "provider_submitter_lob",
+        "id": "provider_submitter_lob",
         "options": ["Select", "CIB", "CCB", "CB"],
         "placeholder": "Submitter Line of Buisness",
         "starVal": "*",
@@ -44,46 +42,41 @@
         "multiple": false,
         "type": "select",
         "validation": {
-          "client": {
-            "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
-            },
-              "rules": {
-            }
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required"
           },
-          "server": {
-
-          }
+          "validators": ["validateSelected"]
         }
       },
-      "provider_submissiondate": {
+      "provider_submission_date": {
         "attributeType": "_DateInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Date Submitted",
-        "id": "provider_submissiondate",
-        "placeholder": "Insert date here",
+        "name": "provider_submission_date",
+        "id": "provider_submission_date",
+        "placeholder": "Submission Date",
         "starVal": "*",
-        "label": "Insert date here",
+        "label": "Submission Date",
         "value": "",
         "type": "input",
         "subtype": "date",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required",
+            "datePast": "Submission Date cannot be a date in the past",
+            "dateFuture": "Please enter correct date"
           },
-          "rules": {
-          }
+          "validators": ["validateRequired", "validateDate"]
         }
       },
-      "provider_selectlob": {
+      "provider_select_lob": {
         "attributeType": "_MultiSelectDropdown",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Select LoB",
-        "id": "provider_selectlob",
+        "name": "provider_select_lob",
+        "id": "provider_select_lob",
         "options": ["CIB", "CCB", "CB"],
         "placeholder": "Select LoB",
         "starVal": "*",
@@ -92,12 +85,11 @@
         "multiple": false,
         "type": "select",
         "validation": {
-            "required": {
-                "isRequired": "true",
-                "error_message": "This field is required."
-            },
-            "rules": {
-            }
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required"
+          },
+          "validators": ["validateRequired"]
         }
       }
     }
@@ -106,64 +98,61 @@
     "ClassificationName": "General Info:",
     "ClassificationDesc": "Contains general information",
     "attributes": {
-      "general_processname": {
+      "general_process_name": {
         "attributeType": "_TextInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Process Name:",
+        "name": "general_process_name",
         "placeholder": "Process Name",
         "starVal": "*",
-        "id": "general_processname",
+        "id": "general_process_name",
         "label": "Process Name",
         "value": "",
         "multiple": false,
         "type": "input",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required"
           },
-          "rules": {
-          }
+          "validators": ["validateSelected"]
         }
       },
-      "general_processdescription": {
+      "general_process_description": {
         "attributeType": "_TextInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Process Desc",
+        "name": "general_process_description",
         "placeholder": "Process Desc",
         "starVal": "*",
-        "id": "general_processdescription",
+        "id": "general_process_description",
         "label": "Process Description",
         "type": "input",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required"
           },
-          "rules": {
-          }
+          "validators": ["validateSelected"]
       }
       },
-      "general_selectlob": {
+      "general_select_lob": {
         "attributeType": "_MultiSelectDropdown",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Select LoB",
+        "name": "general_select_lob",
         "options": ["CIB", "CCB", "CB"],
         "placeholder": "Select LoB",
         "starVal": "*",
-        "id": "general_selectlob",
+        "id": "general_select_lob",
         "label": "Select LOB",
         "type": "select",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required"
           },
-          "rules": {
-          }
+          "validators": ["validateSelected"]
         }
       }
     }
@@ -172,69 +161,69 @@
     "ClassificationName": "Risk Info:",
     "ClassificationDesc": "Contains Risk information",
     "attributes": {
-      "risk_submitter": {
+      "risk_submitter_email": {
         "attributeType": "_TextInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "risk_submitter",
+        "name": "risk_submitter_email",
         "placeholder": "Submitter Email",
         "starVal": "*",
         "type": "input",
         "subtype": "email",
-        "id": "risk_submitter",
+        "id": "risk_submitter_email",
         "label": "Submitter Email",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "minlength": 7,
+          "maxlength": 30,
+          "regex": "^(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$",
+          "errorMessages": {
+            "required": "This field is required",
+            "regex": "Please enter your email in the right format.",
+            "length": "Email should be between 7 and 30 characters."
           },
-          "rules": {
-          },
-          "dataRuleRegex" :{
-            "regex": "^(([^<>()\\[\\]\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$",
-            "error_message": "Please enter your email in the right format."
-          }
+          "validators": ["validateRequired", "validateRegex", "validateLength"]
         }
       },
-      "risk_submitterlob": {
+      "risk_submitter_lob": {
         "attributeType": "_SingleSelectDropdown",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Submitter LOB",
+        "name": "risk_submitter_lob",
         "options": ["Select", "CIB", "CCB", "CB"],
         "placeholder": "Submitter Line of Buisness",
         "starVal": "*",
         "type": "select",
-        "id": "risk_submitterlob",
+        "id": "risk_submitter_lob",
         "label": "Submitter LOB",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required"
           },
-          "rules": {
-          }
+          "validators": ["validateSelected"]
         }
       },
-      "risk_submissiondate": {
+      "risk_submission_date": {
         "attributeType": "_DateInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Date Submitted",
-        "id": "risk_submissiondate",
-        "placeholder": "Insert date here",
+        "name": "risk_submission_date",
+        "id": "risk_submission_date",
+        "placeholder": "Submission Date",
         "starVal": "*",
         "label": "Submission Date",
         "value": "",
         "type": "input",
         "subtype": "date",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required.",
+            "datePast": "Submission Date cannot be a previous date.",
+            "dateFuture": "Please enter a valid date."
           },
-          "rules": {
-          }
+          "validators": ["validateRequired", "validateDate"]
         }
       }
     }
@@ -243,82 +232,82 @@
     "ClassificationName": "NEW SECTION:",
     "ClassificationDesc": "Contains Risk information",
     "attributes": {
-      "new_submitter": {
+      "new_submitter_sid": {
         "attributeType": "_TextInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Submitter:",
+        "name": "new_submitter_sid",
         "type": "input",
+        "subtype": "number",
         "placeholder": "Submitter SID",
         "starVal": "*",
-        "id": "new_submitter",
+        "id": "new_submitter_sid",
         "label": "Submitter SID",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+            "required": "This field is required"
           },
-          "rules": {
-          }
+          "validators": ["validateRequired"]
         }
       },
-      "new_submitterlob": {
+      "new_submitter_lob": {
         "attributeType": "_SingleSelectDropdown",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Submitter LOB",
+        "name": "new_submitter_lob",
         "type": "select",
         "options": ["Select", "CIB", "CCB", "CB"],
         "placeholder": "Submitter Line of Buisness",
         "starVal": "*",
-        "id": "new_submitterlob",
+        "id": "new_submitter_lob",
         "label": "Submitter LOB",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": false,
+          "errorMessages": {
+            "required": "This field is required"
           },
-          "rules": {
-          }
+          "validators": []
         }
       },
-      "new_submissiondate": {
+      "new_submission_date": {
         "attributeType": "_DateInput",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "type": "date",
-        "name": "Date Submitted",
-        "placeholder": "Insert date here",
+        "type": "input",
+        "subtype": "date",
+        "name": "new_submission_date",
+        "placeholder": "Submission Date",
         "starVal": "*",
-        "id": "new_submissiondate",
+        "id": "new_submission_date",
         "label": "Submission Date",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required."
+          "required": true,
+          "errorMessages": {
+              "required": "This field is required.",
+              "dateFuture": "Please enter a valid date.",
+              "datePast": "Submission Date cannot be a date in the past"
           },
-          "rules": {
-          }
+          "validators": ["validateRequired", "validateDate"]
         }
       },
-      "new_selectlob": {
+      "new_select_lob": {
         "attributeType": "_MultiSelectDropdown",
         "layoutClasses": "col-12 col-lg-6",
         "containerClasses": "",
-        "name": "Select LoB",
+        "name": "new_select_lob",
         "options": ["CIB", "CCB", "CB"],
         "placeholder": "Select LoB",
         "starVal": "*",
-        "id": "new_selectlob",
+        "id": "new_select_lob",
         "label": "Select LOB",
         "type": "select",
         "validation": {
-          "required": {
-              "isRequired": "true",
-              "error_message": "This field is required: error from new_selectLob"
+          "required": false,
+          "errorMessages": {
+              "required": "This field is required: error from new_selectLob"
           },
-          "rules": {
-          }
+          "validators": []
         }
       }
     }

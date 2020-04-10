@@ -34,7 +34,7 @@ function MultiSelectDropdown(props) {
       <div className={`form-group row${props.containerClasses ? " " + props.containerClasses : ''}`}
             aria-required={props.aria_required}>
         <label htmlFor={props.id} className="col-12 col-sm-4 col-lg-4 col-form-label">
-          {props.label} {validation.required.isRequired && !props.isStandAloneField && props.starVal}
+          {props.label} {validation.required && props.starVal}
         </label>
         <div className="col-12 col-sm-8 col-lg-8">
           {/* {props.error && <span className="error">{props.errorMessage}</span>} */}

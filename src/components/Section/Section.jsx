@@ -74,10 +74,9 @@ function Section({formErrors, formValues, section, updateFormErrors, updateFormV
 }
 
 Section.propTypes = {
-  dispatchSections: PropTypes.func,
   formErrors: PropTypes.object,
   formValues: PropTypes.object,
-  sections: PropTypes.object,
+  section: PropTypes.object,
   updateFormValues: PropTypes.func,
   updateFormErrors: PropTypes.func
 };

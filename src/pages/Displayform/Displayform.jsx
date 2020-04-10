@@ -17,13 +17,15 @@ import './Displayform.module.scss';
 
 const Displayform = (props) => {
   const [open, setOpen] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [formComplete, setFormComplete] = useState(false);
   const {dispatchSections, formErrors, formValues, history, sections, updateFormErrors, updateFormValues} = props
 
   useEffect(() => {
     fetch('http://localhost:3001/forms')
     .then(res => res.json())
     .then(data => dispatchSections({sections: JSON.parse(data)}))
-  }, [])
+  })
 
   const createSection = (sectionName, key) => {
     const section = sections[sectionName]
@@ -44,10 +46,10 @@ const Displayform = (props) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
   };
 
+  /*eslint no-unused-vars: 0 */
   const submitForm = (event) => {
     let data = {}
     const form = document.forms.displayForm
@@ -63,31 +65,37 @@ const Displayform = (props) => {
       })
     })
     if (!Validate.validateForm(props, validationRules, "displayForm")) {
-        inputFields.forEach((inputField) => {
-            if (inputField.type !== 'radio' && inputField.type !== 'checkbox') {
-              const value = inputField.value || formValues[inputField.id]
-              data[inputField.id] = value && value.trim()
-            }
-        })
-        selectFields.forEach((selectField) => {
-            data[selectField.id] = selectField.value
-        })
-        fetch('http://localhost:3001/forms', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data, null, "  ")
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
-          setOpen(true)
-          // history.push('display/forms')
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
+      setFormComplete(true)
+      inputFields.forEach((inputField) => {
+          if (inputField.type !== 'radio' && inputField.type !== 'checkbox') {
+            const value = inputField.value || formValues[inputField.id]
+            data[inputField.id] = value && value.trim()
+          }
+      })
+      selectFields.forEach((selectField) => {
+          data[selectField.id] = selectField.value
+      })
+      fetch('http://localhost:3001/forms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data, null, "  ")
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        setOpen(true)
+        // history.push('/display/forms')
+      })
+      .catch((error) => {
+        setHasError(true);
+        setOpen(true)
+        console.error('Error:', error);
+      });
+    } else {
+      setFormComplete(false)
+      setOpen(true)
     }
   }
 
@@ -99,11 +107,13 @@ const Displayform = (props) => {
       <div  style={{textAlign: "center"}}>
         <Button variant="contained" size="large" color="primary" type="button" disabled={!sectionRenders} onClick={submitForm}>Submit</Button>
       </div>
-      {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          Form Saved Successfully!
-        </Alert>
-      </Snackbar> */}
+      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+        {formComplete ? 
+          hasError ? 
+            <Alert onClose={handleClose} severity="error">Error! Unable to save form.</Alert>
+            : <Alert onClose={handleClose} severity="success">Form Saved Successfully!</Alert>
+          : <Alert onClose={handleClose} severity="error">Please fill up required fields.</Alert>}
+      </Snackbar>
     </form>
   );
 };
