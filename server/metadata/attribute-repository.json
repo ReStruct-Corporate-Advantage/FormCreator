@@ -1,0 +1,102 @@
+{
+    "attributes": {
+        "MultiSelectDropdown": {
+            "attributeType": "_MultiSelectDropdown",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "multiSelectDropdown",
+            "options": [
+                "CIB",
+                "CCB",
+                "CB"
+            ],
+            "placeholder": "Select LoB",
+            "starVal": "*",
+            "id": "multiSelectDropdown",
+            "label": "Select LOB",
+            "type": "select",
+            "properties": [],
+            "validation": {
+                "required": false,
+                "errorMessages": {
+                    "required": "This field is required: error from new_selectLob"
+                },
+                "validators": []
+            }
+        },
+        "TextInput": {
+            "attributeType": "_TextInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "textInput",
+            "type": "input",
+            "subtype": "number",
+            "placeholder": "Text Input",
+            "starVal": "*",
+            "id": "textInput",
+            "label": "Text Input",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required"
+                },
+                "validators": [
+                    "validateRequired"
+                ]
+            }
+        },
+        "SingleSelectDropdown": {
+            "attributeType": "_SingleSelectDropdown",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "new_submitter_lob",
+            "type": "select",
+            "options": [
+                "Select",
+                "CIB",
+                "CCB",
+                "CB"
+            ],
+            "placeholder": "Submitter Line of Buisness",
+            "starVal": "*",
+            "id": "new_submitter_lob",
+            "label": "Submitter LOB",
+            "validation": {
+                "required": false,
+                "errorMessages": {
+                    "required": "This field is required"
+                },
+                "validators": []
+            }
+        },
+        "DateInput": {
+            "attributeType": "_DateInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "new_submission_date",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "new_submission_date",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        }
+    },
+    "validations": {
+
+    }
+}

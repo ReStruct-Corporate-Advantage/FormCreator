@@ -1,0 +1,64 @@
+{
+    "ClassificationName": "Attribute Creator Form",
+    "ClassificationDesc": "Form to create customized attributes.",
+    "attributes": {
+        "component_type": {
+            "attributeType": "_SingleSelectDropdown",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "component_type",
+            "id": "component_type",
+            "options": [],
+            "placeholder": "Component Type",
+            "starVal": "*",
+            "label": "Component Type",
+            "value": "",
+            "multiple": false,
+            "type": "select",
+            "validation": {
+                "required": true,
+                "minlength": 5,
+                "maxlength": 15,
+                "regex": "^[0-9]+$",
+                "errorMessages": {
+                    "required": "This field is required",
+                    "regex": "SID should be numeric",
+                    "length": "Length of the field should be between 5 and 15 characters."
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateRegex",
+                    "validateLength"
+                ]
+            }
+        },
+        "component_attributes": {
+            "attributeType": "_SingleSelectDropdown",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "provider_submitter_lob",
+            "id": "provider_submitter_lob",
+            "options": [
+                "Select",
+                "CIB",
+                "CCB",
+                "CB"
+            ],
+            "placeholder": "Submitter Line of Buisness",
+            "starVal": "*",
+            "label": "Submitter Line of Business",
+            "value": "",
+            "multiple": false,
+            "type": "select",
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required"
+                },
+                "validators": [
+                    "validateSelected"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.c-TabbedRoot {
+
+  .MuiTabs-scroller {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .panel-container {
+    overflow-y: scroll;
+    width: 70%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-bottom: 80px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .container {
+      margin-top: 0;
+    }
+  }
+}

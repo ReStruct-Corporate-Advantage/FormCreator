@@ -15,11 +15,20 @@ app.use(pino);
 app.post('/forms', (req, res) => {
   const jsonData = req.body
   console.log(jsonData)
-  fs.appendFile("metadata/forms-meta-save.json", JSON.stringify(jsonData), function(err) {
+  fs.appendFile("metadata/forms-meta-save.json", JSON.stringify(jsonData, null, 4), function(err) {
     if (err) {
         return res.json(err);
     }
     return res.json(jsonData)
+  });
+})
+
+app.get('/attributes', (req, res) => {
+  fs.readFile("metadata/attribute-repository.json", "utf8", function(err, data) {
+    if (err) {
+        return res.json(err);
+    }
+    return res.json(data)
   });
 })
 

@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Section({formErrors, formValues, section, updateFormErrors, updateFormValues}) {
+function Section({expandable, formErrors, formValues, section, updateFormErrors, updateFormValues}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleChange = panel => (event, isExpanded) => {
@@ -46,15 +46,14 @@ function Section({formErrors, formValues, section, updateFormErrors, updateFormV
   }
 
   const attributeRenders = Attributes && Object.keys(Attributes).length > 0 && Object.keys(Attributes).map(createAttributes)
-
   return (
     <div className="c-Section">
       <ExpansionPanel
-        expanded={expanded === ClassifictionName}
+        expanded={expandable !== undefined ? !expandable : expanded === ClassifictionName}
         onChange={handleChange(ClassifictionName)}
       >
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={expandable === undefined && <ExpandMoreIcon />}
           aria-controls={ClassifictionName + " -content"}
           id={ClassifictionName + " -header"}
         >
@@ -78,7 +77,8 @@ Section.propTypes = {
   formValues: PropTypes.object,
   section: PropTypes.object,
   updateFormValues: PropTypes.func,
-  updateFormErrors: PropTypes.func
+  updateFormErrors: PropTypes.func,
+  expandable: PropTypes.bool
 };
 
 export default Section;

@@ -1,13 +1,11 @@
 import Immutable from 'immutable'
-import {DISPATCH_ATTRIBUTES, UPDATE_FORM_ERRORS, UPDATE_FORM_VALUES} from './actions'
+import {IS_MOBILE} from './actions'
 
 const initialState = Immutable.Map()
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case DISPATCH_ATTRIBUTES:
-        case UPDATE_FORM_ERRORS:
-        case UPDATE_FORM_VALUES:
+        case IS_MOBILE:
             return state.mergeDeep(action.payload)
         default:
             return state

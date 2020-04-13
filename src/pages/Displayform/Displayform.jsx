@@ -12,6 +12,7 @@ import {dispatchSections, updateFormErrors, updateFormValues} from './actions';
 import {getSections, getFormErrors, getFormValues} from './selectors';
 
 import Section from '../../components/Section';
+import FormHeader from './../../components/FormHeader';
 import {Validate} from './../../validations/validationUtility'
 import './Displayform.module.scss';
 
@@ -102,19 +103,22 @@ const Displayform = (props) => {
   const sectionRenders = sections && Object.keys(sections).length > 0 && Object.keys(sections).map(createSection)
 
   return (
-    <form id="displayForm" className="c-Displayform container">
-      {sectionRenders}
-      <div  style={{textAlign: "center"}}>
-        <Button variant="contained" size="large" color="primary" type="button" disabled={!sectionRenders} onClick={submitForm}>Submit</Button>
-      </div>
-      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-        {formComplete ? 
-          hasError ? 
-            <Alert onClose={handleClose} severity="error">Error! Unable to save form.</Alert>
-            : <Alert onClose={handleClose} severity="success">Form Saved Successfully!</Alert>
-          : <Alert onClose={handleClose} severity="error">Please fill up required fields.</Alert>}
-      </Snackbar>
-    </form>
+    <div className="c-Displayform">
+      <FormHeader title="Process Form" />
+      <form id="displayForm" className="container">
+        {sectionRenders}
+        <div  style={{textAlign: "center"}}>
+          <Button variant="contained" size="large" color="primary" type="button" disabled={!sectionRenders} onClick={submitForm}>Submit</Button>
+        </div>
+        <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+          {formComplete ? 
+            hasError ? 
+              <Alert onClose={handleClose} severity="error">Error! Unable to save form.</Alert>
+              : <Alert onClose={handleClose} severity="success">Form Saved Successfully!</Alert>
+            : <Alert onClose={handleClose} severity="error">Please fill up required fields.</Alert>}
+        </Snackbar>
+      </form>
+    </div>
   );
 };
 

@@ -16,6 +16,7 @@ window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         immutable: Immutable
     }
 }) : compose;
+
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 
 ReactDOM.render(<Router store={store} />, document.getElementById("root"));
