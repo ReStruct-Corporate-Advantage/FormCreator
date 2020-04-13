@@ -22,6 +22,7 @@ function a11yProps(index) {
 }
 
 const TabbedRoot = props => {
+  const {dispatchDeviceType} = props
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -50,8 +51,8 @@ const TabbedRoot = props => {
   };
 
   useEffect(() => {
-    props.dispatchDeviceType({isMobile: isMobile()})
-  }, [])
+    dispatchDeviceType({isMobile: isMobile()})
+  }, [dispatchDeviceType])
 
   /* eslint no-useless-escape: 0 */
   const isMobile = (() => {
@@ -60,7 +61,7 @@ const TabbedRoot = props => {
     return check;
   });
 
-  const tabItemRenders = labels.map((label, key) => <Tab label={label} {...a11yProps(key)} />)
+  const tabItemRenders = labels.map((label, key) => <Tab label={label} key={key} {...a11yProps(key)} />)
 
   return (
     <React.Fragment>

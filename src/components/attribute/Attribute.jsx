@@ -33,7 +33,7 @@ function Attribute({attributeInfo, formErrors, formValues, index, updateFormErro
             [id]: ''
         }
     })
-  }, [])
+  }, [updateFormValues, updateFormErrors, id])
 
   const createAttribute = (attributeInfo) => {
     const type = attributeInfo.attributeType

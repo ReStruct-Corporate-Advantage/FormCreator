@@ -15,7 +15,7 @@ AttributesAside.defaultProps = {
 };
 
 AttributesAside.propTypes = {
-
+  attributes: PropTypes.array
 };
 
 export default AttributesAside;

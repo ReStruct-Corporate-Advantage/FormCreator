@@ -1,4 +1,19 @@
 .c-FormHeader {
-  background:#333;
-  padding: 1rem;
+
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+
+  &.c-FormHeader__header-background {
+    background:#333;
+    padding: 1rem;
+  }
+
+  .c-FormHeader__title--bold {
+    font-weight: bolder;
+    font-size: 1.5rem;
+    margin-bottom: unset;
+  }
 }

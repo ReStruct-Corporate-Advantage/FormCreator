@@ -1,4 +1,6 @@
 /* PLOP_INJECT_IMPORT */
+import ButtonsPanel from './ButtonsPanel';
+import AttributeStrip from './AttributeStrip';
 import FormHeader from './FormHeader';
 import HeaderTools from './HeaderTools';
 import Header from './Header';
@@ -12,6 +14,8 @@ import AttributeCreator from './molecules/AttributeCreator';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	ButtonsPanel,
+	AttributeStrip,
 	FormHeader,
 	HeaderTools,
 	Header,

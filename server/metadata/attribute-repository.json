@@ -5,6 +5,8 @@
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
             "name": "multiSelectDropdown",
+            "displayName": "Multi Select Combo Box",
+            "description": "Form Control to select multiple values from pre-populated values.",
             "options": [
                 "CIB",
                 "CCB",
@@ -29,6 +31,8 @@
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
             "name": "textInput",
+            "displayName": "Text Input",
+            "description": "Form Control to provide one line values.",
             "type": "input",
             "subtype": "number",
             "placeholder": "Text Input",
@@ -50,7 +54,9 @@
             "attributeType": "_SingleSelectDropdown",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
-            "name": "new_submitter_lob",
+            "name": "singleSelectDropdown",
+            "displayName": "Single Select Combo Box",
+            "description": "Form Control to select a single value from pre-populated values.",
             "type": "select",
             "options": [
                 "Select",
@@ -60,7 +66,7 @@
             ],
             "placeholder": "Submitter Line of Buisness",
             "starVal": "*",
-            "id": "new_submitter_lob",
+            "id": "singleSelectDropdown",
             "label": "Submitter LOB",
             "validation": {
                 "required": false,
@@ -76,10 +82,120 @@
             "containerClasses": "",
             "type": "input",
             "subtype": "date",
-            "name": "new_submission_date",
+            "name": "dateInput",
+            "displayName": "Date Input",
+            "description": "Form Control to select a date.",
             "placeholder": "Submission Date",
             "starVal": "*",
-            "id": "new_submission_date",
+            "id": "dateInput",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "MultiLineTextInput": {
+            "attributeType": "_MultiLineTextInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "textarea",
+            "subtype": "date",
+            "name": "multiLineTextInput",
+            "displayName": "Multi Line Text Input",
+            "description": "Form Control to provide values spanning multiple lines.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "multiLineTextInput",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "RadioButtonGroup": {
+            "attributeType": "_RadioButtonGroup",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "radioButtonGroup",
+            "displayName": "Radio Button Group",
+            "description": "Form Control to choose one of the provided options.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "radioButtonGroup",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "CheckBoxGroup": {
+            "attributeType": "_CheckBoxGroup",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "checkBoxGroup",
+            "displayName": "Check Box Group",
+            "description": "Form Control to choose multiple values from a set of given checkboxes.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "checkBoxGroup",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "HelpText": {
+            "attributeType": "_DateInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "helpText",
+            "displayName": "Date Input",
+            "description": "Help Text providing details about a particular Form Control.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "helpText",
             "label": "Submission Date",
             "properties": [],
             "validation": {

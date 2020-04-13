@@ -8,17 +8,17 @@ import {dispatchAttributes, updateFormErrors, updateFormValues} from './actions'
 import AttributeCreator from '../../components/AttributeCreator/AttributeCreator';
 import './Createattribute.module.scss';
 
-const Createattribute = ({attributes, formErrors, formValues, updateFormErrors, updateFormValues}) => {
+const Createattribute = ({attributes, dispatchAttributes, formErrors, formValues, updateFormErrors, updateFormValues}) => {
   const opts = {attributes, formErrors, formValues, updateFormErrors, updateFormValues}
   useEffect(() => {
     fetch('http://localhost:3001/attributes')
     .then(res => res.json())
-    .then(data => dispatchAttributes({attributes: JSON.parse(data)}))
-  }, [])
+    .then(data => dispatchAttributes({attributes: JSON.parse(data).attributes}))
+  }, [dispatchAttributes])
 
   return (
     <div className="c-Createattribute">
-      <div className="container">
+      <div className="container c-Createattribute__container">
         <div className="row">
           <div className="col-12">
             <AttributeCreator {...opts}/>
