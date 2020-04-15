@@ -11,15 +11,6 @@
     .c-AttributeCreator__content  {
         border: 1px solid #ccc;
         padding: 30px 20px;
-
-        .c-AttributeCreator__attribute-selector__btn-Submit, .c-AttributeCreator__attribute-customizer__btn-Submit {
-            padding: 0.7rem 2rem;
-            font-size: 1.3rem;
-            background: #f50057;
-            span {
-                font-weight: 700;
-            }
-        }
     }
 
     &:not(:last-child) {

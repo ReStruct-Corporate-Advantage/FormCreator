@@ -7,9 +7,9 @@ const TextInput = (props) => {
       {props.error && <span className="error offset-12 offset-sm-4 offset-lg-4">{props.errorMessage}</span>}
       <div className={`form-group row${props.containerClasses ? " " + props.containerClasses : ''}`}
             aria-required={props.aria_required}>
-        <label htmlFor={props.id} className="col-12 col-sm-4 col-lg-4 col-form-label">
+        {props.label && <label htmlFor={props.id} className="col-12 col-sm-4 col-lg-4 col-form-label">
           {props.label} {validation.required && props.starVal}
-        </label>
+        </label>}
         <div className="col-12 col-sm-8 col-lg-8">
           {/* {props.error && <span className="error">{props.errorMessage}</span>} */}
           <input

@@ -1,6 +1,37 @@
 {
+    "attributeGlobalProperties": [
+        {
+            "name": "class",
+            "description": "Specifies one or more classnames for an element (refers to a class in a style sheet)"
+        },
+        {
+            "name": "contenteditable",
+            "description": "Specifies whether the content of an element is editable or not"
+        },
+        {
+            "name": "draggable",
+            "description": "Specifies whether an element is draggable or not"
+        },
+        {
+            "name": "dropzone",
+            "description": "Specifies whether the dragged data is copied, moved, or linked, when dropped"
+        },
+        {
+            "name": "hidden",
+            "description": "Specifies that an element is not yet, or is no longer, relevant"
+        },
+        {
+            "name": "id",
+            "description": "Specifies a unique id for an element",
+            "order": 3
+        },
+        {
+            "name": "tabindex",
+            "description": "Specifies the tabbing order of an element"
+        }
+    ],
     "attributes": {
-        "MultiSelectDropdown": {
+        "multiSelectDropdown": {
             "attributeType": "_MultiSelectDropdown",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
@@ -26,7 +57,7 @@
                 "validators": []
             }
         },
-        "TextInput": {
+        "textInput": {
             "attributeType": "_TextInput",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
@@ -39,7 +70,138 @@
             "starVal": "*",
             "id": "textInput",
             "label": "Text Input",
-            "properties": [],
+            "properties": [
+                {
+                    "name": "accept",
+                    "dependsOn": {"type": "file"},
+                    "description": "Specifies a filter for what file types the user can pick from the file input dialog box (only for type=\"file\")",
+                    "order": 5
+                },
+                {
+                    "name": "alt",
+                    "dependsOn": {"type": "image"},
+                    "description": "Specifies an alternate text for images (only for type=\"image\")",
+                    "order": 5
+                },
+                {
+                    "name": "autocomplete",
+                    "description": "Specifies whether an <input> element should have autocomplete enabled",
+                    "order": 5
+                },
+                {
+                    "name": "autofocus",
+                    "description": "Specifies that an <input> element should automatically get focus when the page loads",
+                    "order": 5
+                },
+                {
+                    "name": "checked",
+                    "description": "Specifies that an <input> element should be pre-selected when the page loads (for type=\"checkbox\" or type=\"radio\")",
+                    "order": 5
+                },
+                {
+                    "name": "disabled",
+                    "description": "Specifies that an <input> element should be disabled",
+                    "order": 5
+                },
+                {
+                    "name": "form",
+                    "description": "Specifies the form the <input> element belongs to",
+                    "order": 4
+                },
+                {
+                    "name": "list",
+                    "description": "Refers to a <datalist> element that contains pre-defined options for an <input> element",
+                    "order": 5
+                },
+                {
+                    "name": "max",
+                    "description": "Specifies the maximum value for an <input> element",
+                    "dependsOn": {"type": ["number", "date"]},
+                    "order": 5
+                },
+                {
+                    "name": "maxlength",
+                    "description": "Specifies the maximum number of characters allowed in an <input> element",
+                    "dependsOn": {"type": "number"},
+                    "order": 5
+                },
+                {
+                    "name": "min",
+                    "description": "Specifies a minimum value for an <input> element",
+                    "dependsOn": {"type": ["number", "date"]},
+                    "order": 5
+                },
+                {
+                    "name": "minlength",
+                    "description": "Specifies the minimum number of characters required in an <input> element",
+                    "dependsOn": {"type": "number"},
+                    "order": 5
+                },
+                {
+                    "name": "multiple",
+                    "description": "Specifies that a user can enter more than one value in an <input> element",
+                    "dependsOn": {"type": "file"},
+                    "order": 5
+                },
+                {
+                    "name": "name",
+                    "description": "Specifies the name of an <input> element",
+                    "order": 1
+                },
+                {
+                    "name": "pattern",
+                    "description": "Specifies a regular expression that an <input> element's value is checked against",
+                    "order": 5
+                },
+                {
+                    "name": "placeholder",
+                    "description": "Specifies a short hint that describes the expected value of an <input> element",
+                    "order": 5
+                },
+                {
+                    "name": "readonly",
+                    "description": "Specifies that an input field is read-only",
+                    "order": 5
+                },
+                {
+                    "name": "required",
+                    "description": "Specifies that an input field must be filled out before submitting the form",
+                    "order": 5
+                },
+                {
+                    "name": "size",
+                    "description": "Specifies the width, in characters, of an <input> element",
+                    "order": 5
+                },
+                {
+                    "name": "src",
+                    "description": "Specifies the URL of the image to use as a submit button (only for type=\"image\")",
+                    "dependsOn": {"type": "image"},
+                    "order": 5
+                },
+                {
+                    "name":"step",
+                    "description": "Specifies the interval between legal numbers in an input field",
+                    "dependsOn": {"type": "number"},
+                    "order": 5
+                },
+                {
+                    "name": "type",
+                    "description": "Specifies the type <input> element to display",
+                    "order": 2
+                },
+                {
+                    "name": "value",
+                    "description": "Specifies the value of an <input> element",
+                    "order": 5
+                },
+                {
+                    "name": "width",
+                    "description": "Specifies the width of an <input> element (only for type=\"image\")",
+                    "dependsOn": {"type": "image"},
+                    "order": 5
+                }
+            ],
             "validation": {
                 "required": true,
                 "errorMessages": {
@@ -50,7 +212,7 @@
                 ]
             }
         },
-        "SingleSelectDropdown": {
+        "singleSelectDropdown": {
             "attributeType": "_SingleSelectDropdown",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
@@ -58,6 +220,7 @@
             "displayName": "Single Select Combo Box",
             "description": "Form Control to select a single value from pre-populated values.",
             "type": "select",
+            "properties": [],
             "options": [
                 "Select",
                 "CIB",
@@ -76,7 +239,7 @@
                 "validators": []
             }
         },
-        "DateInput": {
+        "dateInput": {
             "attributeType": "_DateInput",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
@@ -103,7 +266,7 @@
                 ]
             }
         },
-        "MultiLineTextInput": {
+        "multiLineTextInput": {
             "attributeType": "_MultiLineTextInput",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
@@ -130,7 +293,7 @@
                 ]
             }
         },
-        "RadioButtonGroup": {
+        "radioButtonGroup": {
             "attributeType": "_RadioButtonGroup",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
@@ -157,7 +320,7 @@
                 ]
             }
         },
-        "CheckBoxGroup": {
+        "checkBoxGroup": {
             "attributeType": "_CheckBoxGroup",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",
@@ -184,7 +347,7 @@
                 ]
             }
         },
-        "HelpText": {
+        "helpText": {
             "attributeType": "_DateInput",
             "layoutClasses": "col-12 col-lg-6",
             "containerClasses": "",

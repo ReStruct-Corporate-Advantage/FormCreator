@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import { Button } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import FormHeader from './../FormHeader'
 import AttributeStrip from './../AttributeStrip';
 import ButtonsPanel from './../ButtonsPanel';
+import AttributeCustomizer from './../AttributeCustomizer';
 
 // import createAttribute from './../../config/createAttribute.json';
 import './AttributeCreator.component.scss';
@@ -12,8 +12,11 @@ const AttributeCreator = (props) => {
   const opts = {...props, expandable: false}
   const [selectedStrip, setSelectedStrip] = useState('');
   const [currentView, setCurrentView] = useState(1);
+  const [title, setTitle] = useState("Select Attribute Type");
   
-  const {attributes} = opts
+  const {attributesInfo} = opts
+  const attributes = attributesInfo && attributesInfo.attributes
+  const globalAttributeProperties = attributesInfo && attributesInfo.attributeGlobalProperties
 
   const onClickHandler = (event) => {
     setSelectedStrip(event.currentTarget.id)
@@ -21,6 +24,13 @@ const AttributeCreator = (props) => {
 
   const attributeSelectHandler = (view) => {
     setCurrentView(view);
+    if (view === 1) {
+      setTitle("Select Attribute Type")
+    } else if (view === 2) {
+      setTitle("Set Properties")
+    } else if (view === 3) {
+      setTitle("Select Validations")
+    }
   }
 
   const attributeRenders = attributes && Object.keys(attributes).map((attribute, index) => {
@@ -33,7 +43,7 @@ const AttributeCreator = (props) => {
 
   return (
     <form className='c-AttributeCreator c-AttributeCreator--shadow'>
-      <FormHeader title="Select Attribute Type" />
+      <FormHeader title={title} />
       <div className="c-AttributeCreator__content container">
         {currentView === 1 &&
           (
@@ -44,7 +54,7 @@ const AttributeCreator = (props) => {
               <ButtonsPanel
                 containerClass="col-12" btnClass="c-AttributeCreator__attribute-selector__btn-Submit"
                 placement="right" nextHandler={() => attributeSelectHandler(2)}
-                showPrevious={false} nextText="Next" />
+                showPrevious={false} nextText="Next" enableCriteria={selectedStrip} />
             </div>
           )
         }
@@ -52,12 +62,26 @@ const AttributeCreator = (props) => {
           (
             <div className="row c-AttributeCreator__attribute-customizer">
               <div className="col-12">
-                {/* {attributeRenders} */}
+                <AttributeCustomizer globalAttributeProperties={globalAttributeProperties} properties={attributes[selectedStrip] && attributes[selectedStrip].properties} />
               </div>
               <ButtonsPanel
                 containerClass="col-12" btnClass="c-AttributeCreator__attribute-customizer__btn-Submit"
                 placement="right" prevHandler={() => attributeSelectHandler(1)} 
                 nextHandler={() => attributeSelectHandler(3)} showPrevious={true}
+                nextText="Next" prevText="Back" />
+            </div>
+          )
+        }
+        {currentView === 3 &&
+          (
+            <div className="row c-AttributeCreator__attribute-customizer">
+              <div className="col-12">
+                <AttributeCustomizer />
+              </div>
+              <ButtonsPanel
+                containerClass="col-12" btnClass="c-AttributeCreator__attribute-customizer__btn-Submit"
+                placement="right" prevHandler={() => attributeSelectHandler(2)} 
+                nextHandler={() => attributeSelectHandler(1)} showPrevious={true}
                 nextText="Next" prevText="Back" />
             </div>
           )
@@ -68,7 +92,7 @@ const AttributeCreator = (props) => {
 };
 
 AttributeCreator.propTypes = {
-  attributes: PropTypes.object,
+  attributesInfo: PropTypes.object,
   currentSection: PropTypes.string,
   formErrors: PropTypes.object,
   formValues: PropTypes.object,

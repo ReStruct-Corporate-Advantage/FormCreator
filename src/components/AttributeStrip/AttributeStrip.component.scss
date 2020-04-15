@@ -6,7 +6,9 @@
   font-size: 1rem;
   cursor: pointer;
   text-transform: capitalize;
-  background: #333;
+  // background: #333;
+  color: #333;
+  border: 1px solid #f50057;
   transition: all 0.3s ease-in-out;
 
   &.c-AttributeStrip--shadow {

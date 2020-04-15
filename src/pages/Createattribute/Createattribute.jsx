@@ -8,12 +8,12 @@ import {dispatchAttributes, updateFormErrors, updateFormValues} from './actions'
 import AttributeCreator from '../../components/AttributeCreator/AttributeCreator';
 import './Createattribute.module.scss';
 
-const Createattribute = ({attributes, dispatchAttributes, formErrors, formValues, updateFormErrors, updateFormValues}) => {
-  const opts = {attributes, formErrors, formValues, updateFormErrors, updateFormValues}
+const Createattribute = ({attributesInfo, dispatchAttributes, formErrors, formValues, updateFormErrors, updateFormValues}) => {
+  const opts = {attributesInfo, formErrors, formValues, updateFormErrors, updateFormValues}
   useEffect(() => {
     fetch('http://localhost:3001/attributes')
     .then(res => res.json())
-    .then(data => dispatchAttributes({attributes: JSON.parse(data).attributes}))
+    .then(data => dispatchAttributes({attributesInfo: JSON.parse(data)}))
   }, [dispatchAttributes])
 
   return (
@@ -38,7 +38,7 @@ Createattribute.propTypes = {
 };
 
 const mapStateToProps = createPropsSelector({
-  attributes: getAttributes,
+  attributesInfo: getAttributes,
   formErrors: getFormErrors,
   formValues: getFormValues
 })

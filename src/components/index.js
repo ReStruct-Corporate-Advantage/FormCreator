@@ -1,4 +1,6 @@
 /* PLOP_INJECT_IMPORT */
+import AttributeCustomizerStrip from './AttributeCustomizerStrip';
+import AttributeCustomizer from './AttributeCustomizer';
 import ButtonsPanel from './ButtonsPanel';
 import AttributeStrip from './AttributeStrip';
 import FormHeader from './FormHeader';
@@ -14,6 +16,8 @@ import AttributeCreator from './molecules/AttributeCreator';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	AttributeCustomizerStrip,
+	AttributeCustomizer,
 	ButtonsPanel,
 	AttributeStrip,
 	FormHeader,
