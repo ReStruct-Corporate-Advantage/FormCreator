@@ -11,7 +11,7 @@ import './Createattribute.module.scss';
 const Createattribute = ({attributesInfo, dispatchAttributes, formErrors, formValues, updateFormErrors, updateFormValues}) => {
   const opts = {attributesInfo, formErrors, formValues, updateFormErrors, updateFormValues}
   useEffect(() => {
-    fetch('http://localhost:3001/attributes')
+    fetch('http://localhost:3001/attributesMeta')
     .then(res => res.json())
     .then(data => dispatchAttributes({attributesInfo: JSON.parse(data)}))
   }, [dispatchAttributes])

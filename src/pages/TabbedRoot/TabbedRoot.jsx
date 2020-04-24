@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {createPropsSelector} from 'reselect-immutable-helpers';
 import {makeStyles} from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import {Tabs, Tab} from '@material-ui/core';
 import TabPanel from './../../components/TabPanel'
 import {dispatchDeviceType} from './actions';
 import {isMobile} from './selectors';
-import Header from './../../components/Header'
-import DisplayForm from './../Displayform'
-import Createattribute from './../Createattribute'
-import AttributesAside from './../../components/AttributesAside'
+import {Header, AttributesAside, WorkflowStepper} from './../../components/'
+import {Displayform, Createattribute} from './../';
+import * as $ from 'jquery';
 import './TabbedRoot.module.scss';
 
 function a11yProps(index) {
@@ -20,6 +18,13 @@ function a11yProps(index) {
     'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
+
+// $(function() {
+//   $('.c-AttributeCreator').areYouSure({
+//     message: 'It looks like you have been editing something. '
+//             + 'If you leave before saving, your changes will be lost.'
+//   });
+// });
 
 const TabbedRoot = props => {
   const {dispatchDeviceType} = props
@@ -77,7 +82,7 @@ const TabbedRoot = props => {
         >
           {tabItemRenders}
         </Tabs>
-        <div className="panel-container">
+        {/* <div className="panel-container">
           <TabPanel value={value} index={0}>
             <Createattribute />
           </TabPanel>
@@ -85,7 +90,19 @@ const TabbedRoot = props => {
             Item Two
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <DisplayForm />
+            <Displayform />
+          </TabPanel>
+        </div> */}
+        <div className="panel-container">
+          <WorkflowStepper />
+          <TabPanel value={value} index={0}>
+            <Createattribute />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Item Two
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Displayform />
           </TabPanel>
         </div>
         <AttributesAside />

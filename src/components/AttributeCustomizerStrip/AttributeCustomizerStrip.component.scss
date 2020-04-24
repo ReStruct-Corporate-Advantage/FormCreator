@@ -1,16 +1,35 @@
 .c-AttributeCustomizerStrip {
   // display: none;
+  position: relative;
+  &:focus, &:hover {
+    .c-AttributeCustomizerStrip__field--transition-width {
+      .c-TextInput {
+        width: 400px;
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+
+  .expanded {
+    &.c-AttributeCustomizerStrip__field--transition-width {
+      .c-TextInput {
+        width: 400px;
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+
   &.c-AttributeCustomizerStrip--materialized {
       color: #333;
       border: 1px solid #f50057;
       border-radius: 3px;
-      &:not(:last-child) {
-        margin-bottom: 2rem;
-      }
+      // &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      // }
   }
 
   &.c-AttributeCustomizerStrip--shadow {
-    box-shadow: 5px 5pxpx 3px rgba(0,0,0,0.12), 10 10px 2px rgba(0,0,0,0.24);
+    box-shadow: 5px 5px 3px rgba(0,0,0,0.12), 10 10px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     &:hover {
         box-shadow: 5px 5px 28px rgba(0,0,0,0.25), 10px 10px 10px rgba(0,0,0,0.22);
@@ -19,12 +38,13 @@
 
   .c-AttributeCustomizerStrip__name {
     text-align: right;
+    text-transform: uppercase;
   }
 
   .c-AttributeCustomizerStrip__name, .c-AttributeCustomizerStrip__separator {
     background: #333;
     color: #ccc;
-    padding: 1rem;
+    padding: 0.5rem;
     font-weight: bold;
   }
 
@@ -33,6 +53,39 @@
   }
 
   .c-AttributeCustomizerStrip__field {
-    padding: 1rem;
+    padding: 0.3rem 0.5rem;
+    .c-TextInput {
+      transition: all 0.5s ease-in-out;
+      width: 0;
+    }
+    .form-group {
+      margin-bottom: 0;
+      .form-control {
+        margin: 0 auto;
+        border: none;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      .form-control {
+        border-radius: 0;
+      }
+    }
+  }
+
+  .c-AttributeCustomizerStrip__close-icon {
+    position: absolute;
+    right: 1rem;
+    top: 0.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: none;
+    color: darkgrey;
+
+    &:hover {
+      box-shadow: 5px 5px 28px rgba(0, 0, 0, 0.25), 10px 10px 10px rgba(0, 0, 0, 0.22);
+      background: transparent;
+      color: black;
+    }
   }
 }

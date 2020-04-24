@@ -1,31 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import Close from '@material-ui/icons/Close'
 import Attribute from './../attribute/Attribute'
 import './AttributeCustomizerStrip.component.scss';
 
 const AttributeCustomizerStrip = props => {
-  const {property} = props
-  let attributeInfo = {
-    attributeType: "_TextInput",
-    layoutClasses: "col-12 col-lg-6",
-    name: "textInput",
-    displayName: "Text Input",
-    description: "Form Control to provide one line values.",
-    type: "input",
-    subtype: "number",
-    placeholder: "Text Input",
-    starVal: "*",
-    id: "textInput",
-  }
+  const [expanded, setExpanded] = useState(false);
+  let attributeInfo = props.attributesInfo.attributes.textInput
+  const {formErrors, formValues, property, removeAttrStripHandler, validation, updateFormErrors, updateFormValues} = props
+  attributeInfo.label = "";
   attributeInfo = {...attributeInfo, ...property}
+  attributeInfo.validation = validation
+  
+  const toggleBoxExpand = (value) => {
+    if (value && value !== "") {
+      setExpanded(true)
+    } else {
+      setExpanded(false)
+    }
+    props.checkFormFilled(value, property)
+  }
+  const opts = {attributeInfo, customBlurHandler: toggleBoxExpand, formErrors, formValues, updateFormErrors, updateFormValues}
+
   return (
-    <div className={`c-AttributeCustomizerStrip c-AttributeCustomizerStrip--materialized c-AttributeCustomizerStrip--shadow row${property.order < 5 ? " expanded" : ""}`}>
+    <label
+      htmlFor={attributeInfo.id}
+      className="c-AttributeCustomizerStrip c-AttributeCustomizerStrip--materialized c-AttributeCustomizerStrip--shadow row"
+      tabIndex="0">
       <div className="col-2 c-AttributeCustomizerStrip__name">{property.name}</div>
       <div className="col-1 c-AttributeCustomizerStrip__separator">:</div>
-      <div className="col-9 c-AttributeCustomizerStrip__field">
-        <Attribute attributeInfo={attributeInfo} />
+      <div className={`col-9 c-AttributeCustomizerStrip__field c-AttributeCustomizerStrip__field--transition-width${expanded ? " expanded" : ""}`}>
+        <Attribute {...opts}/>
       </div>
-    </div>
+      <div className="c-AttributeCustomizerStrip__close-icon" onClick={() => removeAttrStripHandler(property)}>
+        <Close />
+      </div>
+    </label>
   );
 };
 
@@ -34,7 +44,14 @@ AttributeCustomizerStrip.defaultProps = {
 };
 
 AttributeCustomizerStrip.propTypes = {
-  property: PropTypes.object
+  checkFormFilled: PropTypes.func,
+  formErrors: PropTypes.object,
+  formValues: PropTypes.object,
+  property: PropTypes.object,
+  removeAttrStripHandler: PropTypes.func,
+  validation: PropTypes.object,
+  updateFormErrors: PropTypes.func,
+  updateFormValues: PropTypes.func
 };
 
 export default AttributeCustomizerStrip;

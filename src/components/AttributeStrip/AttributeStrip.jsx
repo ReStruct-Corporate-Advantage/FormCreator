@@ -8,6 +8,7 @@ const AttributeStrip = props => {
     <div
       className={`c-AttributeStrip${selectedStrip === attribute.id ? ' selected' : ''} container c-AttributeStrip--shadow`}
       onClick={onClickHandler}
+      // style={{top: `${75*(props.index)}px`}}
       id={attribute.id}>
         <div className="row">
           <div className="col-3"><span>{attribute.displayName}</span></div>

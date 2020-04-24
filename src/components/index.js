@@ -1,4 +1,7 @@
 /* PLOP_INJECT_IMPORT */
+import ValidationSelector from './ValidationSelector';
+import MoreAttributeProperties from './MoreAttributeProperties';
+import WorkflowStepper from './WorkflowStepper';
 import AttributeCustomizerStrip from './AttributeCustomizerStrip';
 import AttributeCustomizer from './AttributeCustomizer';
 import ButtonsPanel from './ButtonsPanel';
@@ -8,14 +11,17 @@ import HeaderTools from './HeaderTools';
 import Header from './Header';
 import AttributesAside from './AttributesAside';
 import TabPanel from './TabPanel';
-import Notification from './Notification';
-import Button from './Button';
+// import Notification from './Notification';
+// import Button from './Button';
 import Section from './Section';
-import FormCreator from './molecules/FormCreator';
-import AttributeCreator from './molecules/AttributeCreator';
+import FormCreator from './FormCreator';
+import AttributeCreator from './AttributeCreator';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	ValidationSelector,
+	MoreAttributeProperties,
+	WorkflowStepper,
 	AttributeCustomizerStrip,
 	AttributeCustomizer,
 	ButtonsPanel,
@@ -25,8 +31,8 @@ export {
 	Header,
 	AttributesAside,
 	TabPanel,
-	Notification,
-	Button,
+	// Notification,
+	// Button,
 	Section,
 	FormCreator,
 	AttributeCreator,

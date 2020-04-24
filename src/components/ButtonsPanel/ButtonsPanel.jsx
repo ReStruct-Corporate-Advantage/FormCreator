@@ -20,7 +20,7 @@ const ButtonsPanel = props => {
 ButtonsPanel.propTypes = {
   containerClass: PropTypes.string,
   btnClass: PropTypes.string,
-  enableCriteria: PropTypes.string,
+  enableCriteria: PropTypes.bool,
   nextHandler: PropTypes.func,
   nextText: PropTypes.string,
   placement: PropTypes.string,

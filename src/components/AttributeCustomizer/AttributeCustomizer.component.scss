@@ -1,7 +1,51 @@
 .c-AttributeCustomizer {
+
+    &.container {
+        margin-bottom: 0 !important;
+    }
     .c-AttributeCustomizer__add-more-button {
-        .c-AttributeCustomizer__add-more-button-icon {
-            cursor: pointer;
+        position: relative;
+        width: fit-content; 
+        &:hover {
+            &.c-AttributeCustomizer__add-more-button--hover-effect {
+                box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            }
         }
+        .c-MoreAttributeProperties--show {
+            height: 300px;
+            width: 250px;
+        }
+    }
+
+    .c-MoreAttributeProperties__mask {
+        position: fixed;
+        width: 2000px;
+        height: 1000px;
+        z-index: 9;
+        opacity: 1.0;
+        top: 0;
+        left: 0;
+    }
+
+    .example-enter {
+        opacity: 0.01;
+        width: 0px;
+    }
+
+    .example-enter.example-enter-active {
+        opacity: 1;
+        width: 100px;
+        transition: 700ms;
+    }
+
+    .example-leave {
+        opacity: 1;
+        width: 100px;
+    }
+
+    .example-leave.example-leave-active {
+        opacity: 0.01;
+        width: 0px;
+        transition: 700ms;
     }
 }

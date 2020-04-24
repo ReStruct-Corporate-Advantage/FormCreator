@@ -5,11 +5,12 @@ import React from "react";
 import { Multiselect } from "multiselect-react-dropdown";
 
 function MultiSelectDropdown(props) {
-  const options = props.options;
-  const validation = props.validation.client ? props.validation.client : props.validation
+  const options = typeof props.options === 'object' ? props.options.map(option => option.displayName) : props.options;
+  const validation = props.validation && props.validation.client ? props.validation.client : props.validation
 
   const onSelectHandler = (selectedList, selectedItem) => {
     let dummyEvent = {}
+    selectedList = typeof props.options === 'object' ? selectedList.map(item => props.options.filter(option => option.displayName === item)[0].name)  : selectedList
     const selectedItemsString = selectedList.join(',')
     dummyEvent.target = {}
     dummyEvent.target.value = selectedItemsString
@@ -20,6 +21,7 @@ function MultiSelectDropdown(props) {
 
   const onRemoveHandler = (selectedList, removedItem) => {
     let dummyEvent = {}
+    selectedList = typeof props.options === 'object' ? selectedList.map(item => props.options.filter(option => option.displayName === item)[0].name)  : selectedList
     const selectedItemsString = selectedList.join(',')
     dummyEvent.target = {}
     dummyEvent.target.value = selectedItemsString

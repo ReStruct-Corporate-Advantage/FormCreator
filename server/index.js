@@ -23,12 +23,48 @@ app.post('/forms', (req, res) => {
   });
 })
 
-app.get('/attributes', (req, res) => {
-  fs.readFile("metadata/attribute-repository.json", "utf8", function(err, data) {
+app.get('/attributesMeta', (req, res) => {
+  fs.readFile("metadata/attributeCreateMetadata.json", "utf8", function(err, data) {
     if (err) {
         return res.json(err);
     }
     return res.json(data)
+  });
+})
+
+app.post('/attributes', (req, res) => {
+  fs.readFile("metadata/attribute-repository.json", "utf8", function(err, data) {
+    if (err) {
+        return res.json(err);
+    } else {
+      let mainDataAsJson;
+      const jsonData = req.body;
+      const key = jsonData && jsonData.general_displayName;
+      if (data) {
+        mainDataAsJson = JSON.parse(data)
+        let attributes = mainDataAsJson.attributes;
+        if (!attributes) {
+          mainDataAsJson.attributes = attributes = {}
+        } else {
+          if(!Object.keys(attributes).every(existingKey => existingKey !== key)) {
+            res.statusMessage = "Duplicate Name, please choose another name for the attribute!"
+            res.status(400).end();
+            return;
+          }
+        }
+        attributes[key] = jsonData
+      } else {
+        mainDataAsJson = {}
+        mainDataAsJson.attributes = {}
+        mainDataAsJson.attributes[key] = jsonData
+      }
+      fs.writeFile("metadata/attribute-repository.json", JSON.stringify(mainDataAsJson, null, 4), function(err, data) {
+          if (err) {
+              return res.json(err);
+          }
+          return res.json(jsonData)
+      });
+    }
   });
 })
 

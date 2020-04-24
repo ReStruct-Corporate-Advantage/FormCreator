@@ -1,0 +1,439 @@
+{
+    "attributeGlobalProperties": [
+        {
+            "name": "displayName",
+            "description": "Name of the component that will be visible when adding the attribute to the form.",
+            "id": "general_displayName",
+            "order": 1
+        },
+        {
+            "name": "class",
+            "description": "Specifies one or more classnames for an element (refers to a class in a style sheet)",
+            "id": "general_class"
+        },
+        {
+            "name": "contenteditable",
+            "description": "Specifies whether the content of an element is editable or not",
+            "id": "general_contenteditable"
+        },
+        {
+            "name": "draggable",
+            "description": "Specifies whether an element is draggable or not",
+            "id": "general_draggable"
+        },
+        {
+            "name": "dropzone",
+            "description": "Specifies whether the dragged data is copied, moved, or linked, when dropped",
+            "id": "general_dropzone"
+        },
+        {
+            "name": "hidden",
+            "description": "Specifies that an element is not yet, or is no longer, relevant",
+            "id": "general_hidden"
+        },
+        {
+            "name": "id",
+            "description": "Specifies a unique id for an element",
+            "order": 3,
+            "id": "general_id"
+        },
+        {
+            "name": "tabindex",
+            "description": "Specifies the tabbing order of an element",
+            "id": "general_tabindex"
+        }
+    ],
+    "attributes": {
+        "multiSelectDropdown": {
+            "attributeType": "_MultiSelectDropdown",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "multiSelectDropdown",
+            "displayName": "Multi Select Combo Box",
+            "description": "Form Control to select multiple values from pre-populated values.",
+            "options": [
+                "CIB",
+                "CCB",
+                "CB"
+            ],
+            "placeholder": "Select LoB",
+            "starVal": "*",
+            "id": "multiSelectDropdown",
+            "label": "Select LOB",
+            "type": "select",
+            "properties": [],
+            "validation": {
+                "required": false,
+                "errorMessages": {
+                    "required": "This field is required: error from new_selectLob"
+                },
+                "validators": []
+            }
+        },
+        "textInput": {
+            "attributeType": "_TextInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "textInput",
+            "displayName": "Text Input",
+            "description": "Form Control to provide one line values.",
+            "type": "input",
+            "subtype": "text",
+            "placeholder": "Text Input",
+            "starVal": "*",
+            "id": "textInput",
+            "label": "Text Input",
+            "properties": [
+                {
+                    "name": "accept",
+                    "dependsOn": {"type": "file"},
+                    "description": "Specifies a filter for what file types the user can pick from the file input dialog box (only for type=\"file\")",
+                    "order": 5,
+                    "id": "text_input_accept"
+                },
+                {
+                    "name": "alt",
+                    "dependsOn": {"type": "image"},
+                    "description": "Specifies an alternate text for images (only for type=\"image\")",
+                    "order": 5,
+                    "id": "text_input_alt"
+                },
+                {
+                    "name": "autocomplete",
+                    "description": "Specifies whether an <input> element should have autocomplete enabled",
+                    "order": 5,
+                    "id": "text_input_autocomplete"
+                },
+                {
+                    "name": "autofocus",
+                    "description": "Specifies that an <input> element should automatically get focus when the page loads",
+                    "order": 5,
+                    "id": "text_input_autofocus"
+                },
+                {
+                    "name": "checked",
+                    "description": "Specifies that an <input> element should be pre-selected when the page loads (for type=\"checkbox\" or type=\"radio\")",
+                    "order": 5,
+                    "id": "text_input_checked"
+                },
+                {
+                    "name": "disabled",
+                    "description": "Specifies that an <input> element should be disabled",
+                    "order": 5,
+                    "id": "text_input_disabled"
+                },
+                {
+                    "name": "form",
+                    "description": "Specifies the form the <input> element belongs to",
+                    "order": 4,
+                    "id": "text_input_form"
+                },
+                {
+                    "name": "list",
+                    "description": "Refers to a <datalist> element that contains pre-defined options for an <input> element",
+                    "order": 5,
+                    "id": "text_input_list"
+                },
+                {
+                    "name": "max",
+                    "description": "Specifies the maximum value for an <input> element",
+                    "dependsOn": {"type": ["number", "date"]},
+                    "order": 5,
+                    "id": "text_input_max"
+                },
+                {
+                    "name": "maxlength",
+                    "description": "Specifies the maximum number of characters allowed in an <input> element",
+                    "dependsOn": {"type": "number"},
+                    "order": 5,
+                    "id": "text_input_maxlength"
+                },
+                {
+                    "name": "min",
+                    "description": "Specifies a minimum value for an <input> element",
+                    "dependsOn": {"type": ["number", "date"]},
+                    "order": 5,
+                    "id": "text_input_min"
+                },
+                {
+                    "name": "minlength",
+                    "description": "Specifies the minimum number of characters required in an <input> element",
+                    "dependsOn": {"type": "number"},
+                    "order": 5,
+                    "id": "text_input_minlength"
+                },
+                {
+                    "name": "multiple",
+                    "description": "Specifies that a user can enter more than one value in an <input> element",
+                    "dependsOn": {"type": "file"},
+                    "order": 5,
+                    "id": "text_input_multiple"
+                },
+                {
+                    "name": "name",
+                    "description": "Specifies the name of an <input> element",
+                    "order": 1,
+                    "id": "text_input_name"
+                },
+                {
+                    "name": "pattern",
+                    "description": "Specifies a regular expression that an <input> element's value is checked against",
+                    "order": 5,
+                    "id": "text_input_pattern"
+                },
+                {
+                    "name": "placeholder",
+                    "description": "Specifies a short hint that describes the expected value of an <input> element",
+                    "order": 5,
+                    "id": "text_input_placeholder"
+                },
+                {
+                    "name": "readonly",
+                    "description": "Specifies that an input field is read-only",
+                    "order": 5,
+                    "id": "text_input_readonly"
+                },
+                {
+                    "name": "required",
+                    "description": "Specifies that an input field must be filled out before submitting the form",
+                    "order": 5,
+                    "id": "text_input_required"
+                },
+                {
+                    "name": "size",
+                    "description": "Specifies the width, in characters, of an <input> element",
+                    "order": 5,
+                    "id": "text_input_size"
+                },
+                {
+                    "name": "src",
+                    "description": "Specifies the URL of the image to use as a submit button (only for type=\"image\")",
+                    "dependsOn": {"type": "image"},
+                    "order": 5,
+                    "id": "text_input_src"
+                },
+                {
+                    "name":"step",
+                    "description": "Specifies the interval between legal numbers in an input field",
+                    "dependsOn": {"type": "number"},
+                    "order": 5,
+                    "id": "text_input_step"
+                },
+                {
+                    "name": "type",
+                    "description": "Specifies the type <input> element to display",
+                    "order": 2,
+                    "id": "text_input_type"
+                },
+                {
+                    "name": "value",
+                    "description": "Specifies the value of an <input> element",
+                    "order": 5,
+                    "id": "text_input_value"
+                },
+                {
+                    "name": "width",
+                    "description": "Specifies the width of an <input> element (only for type=\"image\")",
+                    "dependsOn": {"type": "image"},
+                    "order": 5,
+                    "id": "text_input_width"
+                }
+            ],
+            "applicableValidations": [
+                {
+                    "displayName": "Validate Required",
+                    "name": "validateRequired",
+                    "id": "text_input_validate_required"
+                },
+                {
+                    "displayName": "Validate Length",
+                    "name": "validateLength",
+                    "id": "text_input_validate_length"
+                },
+                {
+                    "displayName": "Validate Date",
+                    "name": "validateDate",
+                    "id": "text_input_validate_Date"
+                },
+                {
+                    "displayName": "Validate Pattern",
+                    "name": "validateRegex",
+                    "id": "text_input_validate_regex"
+                }
+            ],
+            "validation": {
+                "required": false,
+                "errorMessages": {
+                    "required": "This field is required"
+                },
+                "validators": [
+                ]
+            }
+        },
+        "singleSelectDropdown": {
+            "attributeType": "_SingleSelectDropdown",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "name": "singleSelectDropdown",
+            "displayName": "Single Select Combo Box",
+            "description": "Form Control to select a single value from pre-populated values.",
+            "type": "select",
+            "properties": [],
+            "options": [
+                "Select",
+                "CIB",
+                "CCB",
+                "CB"
+            ],
+            "placeholder": "Submitter Line of Buisness",
+            "starVal": "*",
+            "id": "singleSelectDropdown",
+            "label": "Submitter LOB",
+            "validation": {
+                "required": false,
+                "errorMessages": {
+                    "required": "This field is required"
+                },
+                "validators": []
+            }
+        },
+        "dateInput": {
+            "attributeType": "_DateInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "dateInput",
+            "displayName": "Date Input",
+            "description": "Form Control to select a date.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "dateInput",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "multiLineTextInput": {
+            "attributeType": "_MultiLineTextInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "textarea",
+            "subtype": "date",
+            "name": "multiLineTextInput",
+            "displayName": "Multi Line Text Input",
+            "description": "Form Control to provide values spanning multiple lines.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "multiLineTextInput",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "radioButtonGroup": {
+            "attributeType": "_RadioButtonGroup",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "radioButtonGroup",
+            "displayName": "Radio Button Group",
+            "description": "Form Control to choose one of the provided options.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "radioButtonGroup",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "checkBoxGroup": {
+            "attributeType": "_CheckBoxGroup",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "checkBoxGroup",
+            "displayName": "Check Box Group",
+            "description": "Form Control to choose multiple values from a set of given checkboxes.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "checkBoxGroup",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        },
+        "helpText": {
+            "attributeType": "_DateInput",
+            "layoutClasses": "col-12 col-lg-6",
+            "containerClasses": "",
+            "type": "input",
+            "subtype": "date",
+            "name": "helpText",
+            "displayName": "Date Input",
+            "description": "Help Text providing details about a particular Form Control.",
+            "placeholder": "Submission Date",
+            "starVal": "*",
+            "id": "helpText",
+            "label": "Submission Date",
+            "properties": [],
+            "validation": {
+                "required": true,
+                "errorMessages": {
+                    "required": "This field is required.",
+                    "dateFuture": "Please enter a valid date.",
+                    "datePast": "Submission Date cannot be a date in the past"
+                },
+                "validators": [
+                    "validateRequired",
+                    "validateDate"
+                ]
+            }
+        }
+    },
+    "validations": {
+
+    }
+}

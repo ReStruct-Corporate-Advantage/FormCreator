@@ -11,9 +11,48 @@
     .c-AttributeCreator__content  {
         border: 1px solid #ccc;
         padding: 30px 20px;
+
+        // .col-12 {
+        //     position: relative;
+        // }
     }
 
     &:not(:last-child) {
         margin-bottom: 1rem;
+    }
+
+    .c-AttributeStrip {
+        // position: absolute;
+        // left: -1000px;
+    }
+
+    label.c-AttributeCustomizerStrip {
+        width: unset;
+        font-family: unset;
+        padding: unset;
+        font-size: 20px;
+    }
+
+
+    .my-node-enter {
+        opacity: 0;
+        // left: -1000px;
+    }
+
+    .my-node-enter-active {
+        opacity: 0.5;
+        // left: 0;
+        transition: opacity 200ms;
+    }
+
+    .my-node-exit {
+        opacity: 1;
+        left: 0;
+    }
+
+    .my-node-exit-active {
+        opacity: 0;
+        left: -1000px;
+        transition: opacity 200ms;
     }
 }

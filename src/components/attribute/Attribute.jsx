@@ -15,7 +15,7 @@ const Components = {
   "_SelectRadioGroup": SelectRadioGroup
 }
 
-function Attribute({attributeInfo, formErrors, formValues, index, updateFormErrors, updateFormValues}) {
+function Attribute({attributeInfo, customChangeHandler, customBlurHandler, formErrors, formValues, index, updateFormErrors, updateFormValues}) {
   let componentKey;
   const id = componentKey = attributeInfo.id
   const [value, setValue] = useState('')
@@ -89,11 +89,17 @@ function Attribute({attributeInfo, formErrors, formValues, index, updateFormErro
   const onChangeHandler = (event, validation) => {
     if (event.isDummy) {
       validateAttribute(event, validation)
+      if (customChangeHandler) {
+        customChangeHandler(event.target.value)
+      }
     }
     setValue(event.target.value)
   }
 
   const onBlurHandler = (event, validation) => {
+    if (customBlurHandler) {
+      customBlurHandler(event.target.value)
+    }
     validateAttribute(event, validation)
   }
 
