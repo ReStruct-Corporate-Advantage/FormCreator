@@ -6,7 +6,7 @@ import './AttributeCustomizerStrip.component.scss';
 
 const AttributeCustomizerStrip = props => {
   const [expanded, setExpanded] = useState(false);
-  let attributeInfo = props.attributesInfo.attributes.textInput
+  let attributeInfo = props.attributesMeta.attributes.textInput
   const {formErrors, formValues, property, removeAttrStripHandler, validation, updateFormErrors, updateFormValues} = props
   attributeInfo.label = "";
   attributeInfo = {...attributeInfo, ...property}
@@ -20,13 +20,17 @@ const AttributeCustomizerStrip = props => {
     }
     props.checkFormFilled(value, property)
   }
-  const opts = {attributeInfo, customBlurHandler: toggleBoxExpand, formErrors, formValues, updateFormErrors, updateFormValues}
+
+  const persistAnimation = (event) => {
+    setExpanded(true)
+  }
+
+  const opts = {attributeInfo, customBlurHandler: toggleBoxExpand, customFocusHandler: persistAnimation, formErrors, formValues, updateFormErrors, updateFormValues}
 
   return (
     <label
       htmlFor={attributeInfo.id}
-      className="c-AttributeCustomizerStrip c-AttributeCustomizerStrip--materialized c-AttributeCustomizerStrip--shadow row"
-      tabIndex="0">
+      className="c-AttributeCustomizerStrip c-AttributeCustomizerStrip--materialized c-AttributeCustomizerStrip--shadow row">
       <div className="col-2 c-AttributeCustomizerStrip__name">{property.name}</div>
       <div className="col-1 c-AttributeCustomizerStrip__separator">:</div>
       <div className={`col-9 c-AttributeCustomizerStrip__field c-AttributeCustomizerStrip__field--transition-width${expanded ? " expanded" : ""}`}>

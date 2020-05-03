@@ -5,7 +5,8 @@ import './ValidationSelector.component.scss';
 
 const ValidationSelector = props => {
 
-  let attributeInfo = props.attributesInfo.attributes.multiSelectDropdown
+  let attributeInfo = props.attributesMeta.attributes.multiSelectDropdown
+  attributeInfo.id = "validations"
   attributeInfo.options = props.validations;
   // attributeInfo.label = "";
   // attributeInfo = {...attributeInfo, ...property}

@@ -8,8 +8,34 @@
     overflow-y: scroll;
     width: 15%;
     padding: 1.5em;
+    background-image: url('https://cdn.wallpapersafari.com/36/99/1oT5zc.jpg');
+    background-size: cover;
+    background-position: center;
 
     &::-webkit-scrollbar {
         display: none;
     }
+
+}
+
+.my-node-enter {
+    opacity: 0;
+    // left: -1000px;
+}
+
+.my-node-enter-active {
+    opacity: 0.5;
+    // left: 0;
+    transition: opacity 200ms;
+}
+
+.my-node-exit {
+    opacity: 1;
+    left: 0;
+}
+
+.my-node-exit-active {
+    opacity: 0;
+    left: -1000px;
+    transition: opacity 200ms;
 }

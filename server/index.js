@@ -32,6 +32,15 @@ app.get('/attributesMeta', (req, res) => {
   });
 })
 
+app.get('/attributes', (req, res) => {
+  fs.readFile("metadata/attribute-repository.json", "utf8", function(err, data) {
+    if (err) {
+        return res.json(err);
+    }
+    return res.json(data)
+  });
+})
+
 app.post('/attributes', (req, res) => {
   fs.readFile("metadata/attribute-repository.json", "utf8", function(err, data) {
     if (err) {
@@ -42,6 +51,7 @@ app.post('/attributes', (req, res) => {
       const key = jsonData && jsonData.general_displayName;
       if (data) {
         mainDataAsJson = JSON.parse(data)
+        mainDataAsJson.count++;
         let attributes = mainDataAsJson.attributes;
         if (!attributes) {
           mainDataAsJson.attributes = attributes = {}
@@ -52,17 +62,20 @@ app.post('/attributes', (req, res) => {
             return;
           }
         }
+        jsonData.order = mainDataAsJson.count;
         attributes[key] = jsonData
       } else {
-        mainDataAsJson = {}
-        mainDataAsJson.attributes = {}
+        mainDataAsJson = {};
+        mainDataAsJson.attributes = {};
+        mainDataAsJson.count = 0;
+        jsonData.order = 0;
         mainDataAsJson.attributes[key] = jsonData
       }
       fs.writeFile("metadata/attribute-repository.json", JSON.stringify(mainDataAsJson, null, 4), function(err, data) {
           if (err) {
               return res.json(err);
           }
-          return res.json(jsonData)
+          return res.json(mainDataAsJson)
       });
     }
   });

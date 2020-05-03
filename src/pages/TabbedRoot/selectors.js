@@ -11,3 +11,4 @@ export const getTabbedRoot = createSelector(
 )
 
 export const isMobile = createGetSelector(getTabbedRoot, 'isMobile')
+export const getStepperState = createGetSelector(getTabbedRoot, 'stepperState')

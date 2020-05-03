@@ -5,10 +5,10 @@ import {createPropsSelector} from 'reselect-immutable-helpers';
 import {makeStyles} from '@material-ui/core/styles';
 import {Tabs, Tab} from '@material-ui/core';
 import TabPanel from './../../components/TabPanel'
-import {dispatchDeviceType} from './actions';
-import {isMobile} from './selectors';
+import {dispatchDeviceType, dispatchStepperState} from './actions';
+import {isMobile, getStepperState} from './selectors';
 import {Header, AttributesAside, WorkflowStepper} from './../../components/'
-import {Displayform, Createattribute} from './../';
+import {Displayform, Createattribute, Createsection, Createform} from './../';
 import * as $ from 'jquery';
 import './TabbedRoot.module.scss';
 
@@ -19,15 +19,7 @@ function a11yProps(index) {
   };
 }
 
-// $(function() {
-//   $('.c-AttributeCreator').areYouSure({
-//     message: 'It looks like you have been editing something. '
-//             + 'If you leave before saving, your changes will be lost.'
-//   });
-// });
-
 const TabbedRoot = props => {
-  const {dispatchDeviceType} = props
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -46,13 +38,18 @@ const TabbedRoot = props => {
       width: '15%'
     }
   }));
-
   const classes = useStyles();
+  const {dispatchDeviceType, dispatchStepperState, stepperState} = props
   const [value, setValue] = React.useState(0);
-  const labels = ['Create Attribute', 'Create Form', 'Display Forms']
+  const labels = ['Create Attribute', 'Create Section', 'Create Form', 'Display Forms']
+  // const tabStepMapping = {1: 4, 2: 5}
+  const tabStepMapping = {}
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    if (newValue in Object.keys(tabStepMapping)) {
+      dispatchStepperState({...stepperState, activeStep: tabStepMapping[newValue]})
+    }
   };
 
   useEffect(() => {
@@ -66,7 +63,7 @@ const TabbedRoot = props => {
     return check;
   });
 
-  const tabItemRenders = labels.map((label, key) => <Tab label={label} key={key} {...a11yProps(key)} />)
+  const tabItemRenders = labels.map((label, key) => <Tab label={label} key={key} {...a11yProps(key)} style={{textAlign: '-webkit-right'}} />)
 
   return (
     <React.Fragment>
@@ -82,28 +79,21 @@ const TabbedRoot = props => {
         >
           {tabItemRenders}
         </Tabs>
-        {/* <div className="panel-container">
-          <TabPanel value={value} index={0}>
-            <Createattribute />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            Item Two
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <Displayform />
-          </TabPanel>
-        </div> */}
         <div className="panel-container">
           <WorkflowStepper />
           <TabPanel value={value} index={0}>
-            <Createattribute />
+            <Createattribute handleChange={handleChange} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
+            <Createsection />
           </TabPanel>
           <TabPanel value={value} index={2}>
+            <Createform />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
             <Displayform />
           </TabPanel>
+          {/* <StepperButtonPanel /> */}
         </div>
         <AttributesAside />
       </div>
@@ -113,15 +103,19 @@ const TabbedRoot = props => {
 
 TabbedRoot.propTypes = {
   isMobile: PropTypes.bool,
-  dispatchDeviceType: PropTypes.func
+  dispatchDeviceType: PropTypes.func,
+  dispatchStepperState: PropTypes.func,
+  stepperState: PropTypes.object
 }
 
 const mapStateToProps = createPropsSelector({
-  isMobile: isMobile
+  isMobile: isMobile,
+  stepperState: getStepperState
 })
 
 const mapDispatchToProps = {
-  dispatchDeviceType
+  dispatchDeviceType,
+  dispatchStepperState
 }
 
 export default connect(

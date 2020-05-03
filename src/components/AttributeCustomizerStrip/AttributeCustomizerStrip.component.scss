@@ -1,7 +1,7 @@
 .c-AttributeCustomizerStrip {
   // display: none;
   position: relative;
-  &:focus, &:hover {
+  &:hover {
     .c-AttributeCustomizerStrip__field--transition-width {
       .c-TextInput {
         width: 400px;

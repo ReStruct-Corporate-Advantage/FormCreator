@@ -1,44 +1,45 @@
-// https://codesandbox.io/s/10xn41w767
-// https://10xn41w767.codesandbox.io/
-
 import React from "react";
 import { Multiselect } from "multiselect-react-dropdown";
 
 function MultiSelectDropdown(props) {
-  const options = typeof props.options === 'object' ? props.options.map(option => option.displayName) : props.options;
+  const convertObjectToOptions = option => option.displayName ? option.displayName : option;
+  const getValuesFromObjects = item => props.options.find(option => option.displayName ? option.displayName === item : option === item)
+  const options = typeof props.options === 'object' ? props.options.map(convertObjectToOptions) : props.options;
   const validation = props.validation && props.validation.client ? props.validation.client : props.validation
 
-  const onSelectHandler = (selectedList, selectedItem) => {
+  const commonHandler = (selectedList) => {
     let dummyEvent = {}
-    selectedList = typeof props.options === 'object' ? selectedList.map(item => props.options.filter(option => option.displayName === item)[0].name)  : selectedList
-    const selectedItemsString = selectedList.join(',')
-    dummyEvent.target = {}
-    dummyEvent.target.value = selectedItemsString
-    dummyEvent.target.tagName = "INPUT"
+    if (typeof props.options === 'object') {
+      selectedList = selectedList.map(getValuesFromObjects);
+      if (selectedList[0] && typeof selectedList[0] === 'object') {
+        selectedList = selectedList.map(item => item.name);
+      }
+    }
+    const selectedItemsString = selectedList.join(',');
+    dummyEvent.target = {};
+    dummyEvent.target.value = selectedItemsString;
+    dummyEvent.target.tagName = "INPUT";
     dummyEvent.isDummy = true;
-    props.onChangeHandler(dummyEvent, validation)
+    props.onChangeHandler(dummyEvent, validation);
+  }
+
+  const onSelectHandler = (selectedList, selectedItem) => {
+    commonHandler(selectedList);
   }
 
   const onRemoveHandler = (selectedList, removedItem) => {
-    let dummyEvent = {}
-    selectedList = typeof props.options === 'object' ? selectedList.map(item => props.options.filter(option => option.displayName === item)[0].name)  : selectedList
-    const selectedItemsString = selectedList.join(',')
-    dummyEvent.target = {}
-    dummyEvent.target.value = selectedItemsString
-    dummyEvent.target.tagName = "INPUT"
-    dummyEvent.isDummy = true;
-    props.onChangeHandler(dummyEvent, validation)
+    commonHandler(selectedList);
   }
 
   return (
-    <div className={`c-MultiSelectDropdown${props.layoutClasses ? " " + props.layoutClasses : ''}`}>
+    <div className={`c-MultiSelectDropdown${props.layoutClasses ? " " + props.layoutClasses : ''}`} style={{color: 'black'}}>
       {props.error && <span className="error offset-12 offset-sm-4 offset-lg-4">{props.errorMessage}</span>}
       <div className={`form-group row${props.containerClasses ? " " + props.containerClasses : ''}`}
             aria-required={props.aria_required}>
-        <label htmlFor={props.id} className="col-12 col-sm-4 col-lg-4 col-form-label">
+        <label htmlFor={props.id} className={`${props.labelClasses ? props.labelClasses : "col-12 col-sm-4 col-lg-4"} col-form-label`}>
           {props.label} {validation.required && props.starVal}
         </label>
-        <div className="col-12 col-sm-8 col-lg-8">
+        <div className={`${props.bodyClasses ? props.bodyClasses : "col-12 col-sm-8 col-lg-8"}`}>
           {/* {props.error && <span className="error">{props.errorMessage}</span>} */}
           <Multiselect
             className={`form-control${props.error ? ' error' : ''}`}

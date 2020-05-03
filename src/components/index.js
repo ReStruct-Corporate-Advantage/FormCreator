@@ -1,4 +1,7 @@
 /* PLOP_INJECT_IMPORT */
+import SectionCreator from './SectionCreator';
+import StepperButtonPanel from './StepperButtonPanel';
+import AttributeTile from './AttributeTile';
 import ValidationSelector from './ValidationSelector';
 import MoreAttributeProperties from './MoreAttributeProperties';
 import WorkflowStepper from './WorkflowStepper';
@@ -19,6 +22,9 @@ import AttributeCreator from './AttributeCreator';
 
 export {
   /* PLOP_INJECT_EXPORT */
+	SectionCreator,
+	StepperButtonPanel,
+	AttributeTile,
 	ValidationSelector,
 	MoreAttributeProperties,
 	WorkflowStepper,

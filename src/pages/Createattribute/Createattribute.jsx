@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createPropsSelector } from 'reselect-immutable-helpers';
 import {withRouter} from 'react-router-dom';
-import {getAttributes, getFormErrors, getFormValues} from './selectors';
-import {dispatchAttributes, updateFormErrors, updateFormValues} from './actions'
-import AttributeCreator from '../../components/AttributeCreator/AttributeCreator';
+import {getAttributeMeta, getFormErrors, getFormValues} from './selectors';
+import {dispatchAttributeMeta, updateFormErrors, updateFormValues} from './actions'
+import AttributeCreator from '../../components/AttributeCreator';
 import './Createattribute.module.scss';
 
-const Createattribute = ({attributesInfo, dispatchAttributes, formErrors, formValues, updateFormErrors, updateFormValues}) => {
-  const opts = {attributesInfo, formErrors, formValues, updateFormErrors, updateFormValues}
+const Createattribute = ({attributesMeta, dispatchAttributeMeta, formErrors, formValues, handleChange, updateFormErrors, updateFormValues}) => {
+  const opts = {attributesMeta, formErrors, formValues, handleChange, updateFormErrors, updateFormValues}
   useEffect(() => {
     fetch('http://localhost:3001/attributesMeta')
     .then(res => res.json())
-    .then(data => dispatchAttributes({attributesInfo: JSON.parse(data)}))
-  }, [dispatchAttributes])
+    .then(data => dispatchAttributeMeta({attributesMeta: JSON.parse(data)}))
+  }, [dispatchAttributeMeta])
 
   return (
     <div className="c-Createattribute">
@@ -31,20 +31,22 @@ const Createattribute = ({attributesInfo, dispatchAttributes, formErrors, formVa
 
 
 Createattribute.propTypes = {
+  attributesMeta: PropTypes.object,
   formErrors: PropTypes.object,
   formValues: PropTypes.object,
+  handleChange: PropTypes.func,
   updateFormValues: PropTypes.func,
   updateFormErrors: PropTypes.func
 };
 
 const mapStateToProps = createPropsSelector({
-  attributesInfo: getAttributes,
+  attributesMeta: getAttributeMeta,
   formErrors: getFormErrors,
   formValues: getFormValues
 })
 
 const mapDispatchToProps = {
-  dispatchAttributes,
+  dispatchAttributeMeta,
   updateFormErrors,
   updateFormValues
 }

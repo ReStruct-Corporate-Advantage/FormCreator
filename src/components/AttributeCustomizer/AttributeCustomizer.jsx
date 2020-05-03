@@ -7,7 +7,7 @@ import './AttributeCustomizer.component.scss';
 
 const AttributeCustomizer = props => {
   const PROPERTY_COUNT_TO_SHOW = 4;
-  const {attributesInfo, formErrors, formValues, properties, globalAttributeProperties, validation, updateFormErrors, updateFormValues, updateCustomizerFormFilled} = props
+  const {attributesMeta, formErrors, formValues, properties, globalAttributeProperties, validation, updateFormErrors, updateFormValues, updateCustomizerFormFilled} = props
   const propertiesTemp = [...properties, ...globalAttributeProperties].sort((a, b) => a.order - b.order)
   const [allProperties, setAllProperties] = useState(propertiesTemp)
   const renderProps = allProperties && allProperties.slice(0, PROPERTY_COUNT_TO_SHOW);
@@ -15,7 +15,7 @@ const AttributeCustomizer = props => {
   const [propertiesToRender, updatePropertiesToRender] = useState(renderProps)
 
   let propertyToValueMapTemp = {};
-  const opts = {attributesInfo, formErrors, formValues, validation, updateFormErrors, updateFormValues}
+  const opts = {attributesMeta, formErrors, formValues, validation, updateFormErrors, updateFormValues}
 
   const updatePropertiesHandler = (property) => {
     allProperties.splice(allProperties.indexOf(property), 1).sort((a, b) => a.order - b.order)

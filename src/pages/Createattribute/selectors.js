@@ -12,4 +12,6 @@ export const getAttribute = createSelector(
 
 export const getFormValues = createGetSelector(getAttribute, 'formValues')
 export const getFormErrors = createGetSelector(getAttribute, 'formErrors')
+export const getAttributeMeta = createGetSelector(getAttribute, 'attributesMeta')
 export const getAttributes = createGetSelector(getAttribute, 'attributesInfo')
+export const getNewSectionAttributes = createGetSelector(getAttribute, 'newSectionAttributes')
